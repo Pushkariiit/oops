@@ -1,0 +1,111 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// Compile Time Polymorphism -> Method Overloading
+
+class cal{
+  public:
+  void add(){
+      cout<<"addition krega"<<endl;
+  }
+  void add(int x){
+      cout<<"X ko add krega"<<endl;
+  }
+  void add(double x){
+      cout<<"Double x ko add krega"<<endl;
+  }
+};
+
+int main(){
+    cal c1=cal();
+    
+    c1.add();
+    c1.add(4);
+    c1.add(3.12);
+}
+
+
+// Compile Time Polymorphism -> operator overloading
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Complex{
+    private:
+    int real,img;
+    
+    public:
+    
+    Complex(int x=0,int y=0){
+        real=x;
+        img=y;
+    }
+    Complex operator+(Complex &c1){
+        Complex res;
+        res.real = real + c1.real;
+        res.img = img + c1.img;
+        return res;
+    }
+    
+    void print(){
+        cout<< real << "+ i"<<img<<endl;
+    }
+};
+
+int main(){
+    
+    Complex c1(4,5);
+    
+    Complex c2(10,5);
+    
+    Complex c3 = c1 + c2;
+    
+    c3.print();
+
+}
+
+
+
+// Runtime Poymorphism : 
+
+class Base {
+public:
+    // Virtual function
+    virtual void show() {
+        cout << "Base class show function" << endl;
+    }
+
+    // Non-virtual function
+    void display() {
+        cout << "Base class display function" << endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    // Overriding the virtual function
+    void show() override {
+        cout << "Derived class show function" << endl;
+    }
+
+    // Overriding the non-virtual function
+    void display() {
+        cout << "Derived class display function" << endl;
+    }
+};
+
+int main() {
+    Base *basePtr;
+    Derived derivedObj;
+
+    basePtr = &derivedObj;
+
+    // Virtual function, binded at runtime (polymorphism)
+    basePtr->show();
+
+    // Non-virtual function, binded at compile time
+    basePtr->display();
+
+    return 0;
+}
+
