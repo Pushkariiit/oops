@@ -1,0 +1,21 @@
+HashMap vs. HashSet
+HashMap (unordered_map in C++)
+Stores key-value pairs.
+Keys must be unique.
+Allows efficient lookup, insertion, and deletion by key.
+Use Case: When you need to associate values with keys and retrieve values efficiently.
+
+HashSet (unordered_set in C++)
+Stores unique elements (only keys).
+No duplicate elements allowed.
+Allows efficient lookup, insertion, and deletion of elements.
+
+HashMap vs. HashSet for Null Values
+Scenario: Given a single-threaded process with null values.
+
+Use HashMap: If you need to associate null values with specific keys, use a hashmap (unordered_map) because it supports key-value pairs.
+Use HashSet: If you only need to check for the presence of null values and no associated data, a hashset (unordered_set) can be sufficient.
+Example: If you need to track whether specific elements are null or not:
+
+HashSet: Use if you only need to know the presence of an element.
+HashMap: Use if you need to store some associated information with the null elements.
