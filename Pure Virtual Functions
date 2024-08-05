@@ -1,0 +1,42 @@
+A pure virtual function in C++ is a function declared in a base class that has no definition relative to the base class and must be overridden in any derived class. 
+Pure virtual functions are declared by assigning 0 to the function declaration.
+
+#include <iostream>
+using namespace std;
+
+// Abstract class Shape with a pure virtual function
+class Shape {
+public:
+    virtual void draw() = 0; // Pure virtual function
+};
+
+// Derived class Circle overriding the pure virtual function
+class Circle : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing Circle" << endl;
+    }
+};
+
+// Derived class Square overriding the pure virtual function
+class Square : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing Square" << endl;
+    }
+};
+
+int main() {
+    // Shape shape; // This will give a compilation error, cannot instantiate an abstract class
+
+    Circle circle;
+    Square square;
+
+    Shape* shape1 = &circle;
+    Shape* shape2 = &square;
+
+    shape1->draw(); // Output: Drawing Circle
+    shape2->draw(); // Output: Drawing Square
+
+    return 0;
+}
