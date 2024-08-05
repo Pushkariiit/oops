@@ -1,0 +1,19 @@
+malloc
+Allocates a specified number of bytes.
+Returns a pointer to the allocated memory.
+Memory content is not initialized.
+
+int* ptr = (int*)malloc(5 * sizeof(int)); // Allocates memory for 5 integers
+
+calloc
+Allocates memory for an array of elements, initializes all bytes to zero.
+Returns a pointer to the allocated memory.
+
+int* ptr = (int*)calloc(5, sizeof(int)); // Allocates and initializes memory for 5 integers
+
+realloc
+Resizes previously allocated memory.
+Can move the memory block if needed.
+
+ptr = (int*)realloc(ptr, 10 * sizeof(int)); // Resizes the memory to hold 10 integers
+
