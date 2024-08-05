@@ -1,0 +1,13 @@
+Inline Functions in C++
+Definition and Use
+Inline functions are functions that the compiler attempts to expand in place rather than calling them through the usual function call mechanism. This can help reduce the overhead associated with function calls, such as pushing arguments onto the call stack and jumping to a different location in memory.
+
+Syntax
+
+inline int add(int a, int b) {
+    return a + b;
+}
+How Inline Functions Help
+Reduced Function Call Overhead: By expanding the function body at the place where the function is called, inline functions eliminate the overhead associated with a function call. This includes avoiding the overhead of stack operations and jump instructions.
+Improved Performance: For small, frequently called functions, using inline can lead to performance improvements by avoiding function call overhead.
+Increased Code Size: One potential downside is that extensive use of inline functions can increase the code size, which might negatively impact performance due to instruction cache misses.
