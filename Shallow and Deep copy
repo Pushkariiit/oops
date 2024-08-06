@@ -109,3 +109,18 @@ int main() {
 
     return 0;
 }
+
+
+Key Differences
+Memory Allocation:
+
+Shallow Copy: Copies the pointer, hence both objects share the same memory.
+Deep Copy: Allocates new memory and copies the actual content, so each object has its own separate memory.
+Modification Impact:
+
+Shallow Copy: Changes made to the copied object affect the original object.
+Deep Copy: Changes made to the copied object do not affect the original object.
+Destruction:
+
+Shallow Copy: Can lead to issues like double deletion if both objects try to free the same memory.
+Deep Copy: Each object frees its own memory, avoiding double deletion issues.
