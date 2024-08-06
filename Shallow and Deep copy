@@ -1,0 +1,111 @@
+A shallow copy of an object copies all the member field values. If the field values are pointers, the addresses are copied, leading to both the original and copied objects sharing the same memory location for 
+those fields.
+This can lead to issues if one of the objects modifies the shared memory or when the objects are destroyed, potentially causing double deletion.
+
+#include <iostream>
+#include <cstring>
+
+class PushkarShallowCopy {
+public:
+    char* str;
+
+    // Constructor
+    PushkarShallowCopy(const char* s) {
+        str = new char[strlen(s) + 1];
+        strcpy(str, s);
+    }
+
+    // Shallow Copy Constructor
+    PushkarShallowCopy(const PushkarShallowCopy& other) {
+        str = other.str;  // Copy the pointer
+        std::cout << "Shallow Copy constructor called!" << std::endl;
+    }
+
+    // Destructor
+    ~PushkarShallowCopy() {
+        delete[] str;
+    }
+
+    // Function to display the string
+    void display() const {
+        std::cout << str << std::endl;
+    }
+};
+
+int main() {
+    PushkarShallowCopy s1("Hello, Pushkar!");
+    PushkarShallowCopy s2 = s1; // Shallow Copy constructor is called here
+
+    std::cout << "s1: ";
+    s1.display();
+    std::cout << "s2: ";
+    s2.display();
+
+    // Modifying s2 will also modify s1
+    s2.str[0] = 'h';
+    std::cout << "After modifying s2: " << std::endl;
+    std::cout << "s1: ";
+    s1.display();
+    std::cout << "s2: ";
+    s2.display();
+
+    return 0;
+}
+
+
+// Deep Copy
+
+A deep copy of an object copies all fields, and for any pointer fields, it allocates separate memory and copies the actual content to this new memory. 
+This ensures that the original and copied objects do not share memory for the pointer fields, preventing issues related to shared memory and double deletion.
+
+#include <iostream>
+#include <cstring>
+
+class PushkarDeepCopy {
+private:
+    char* str;
+
+public:
+    // Constructor
+    PushkarDeepCopy(const char* s) {
+        str = new char[strlen(s) + 1];
+        strcpy(str, s);
+    }
+
+    // Deep Copy Constructor
+    PushkarDeepCopy(const PushkarDeepCopy& other) {
+        str = new char[strlen(other.str) + 1];
+        strcpy(str, other.str);
+        std::cout << "Deep Copy constructor called!" << std::endl;
+    }
+
+    // Destructor
+    ~PushkarDeepCopy() {
+        delete[] str;
+    }
+
+    // Function to display the string
+    void display() const {
+        std::cout << str << std::endl;
+    }
+};
+
+int main() {
+    PushkarDeepCopy s1("Hello, Pushkar!");
+    PushkarDeepCopy s2 = s1; // Deep Copy constructor is called here
+
+    std::cout << "s1: ";
+    s1.display();
+    std::cout << "s2: ";
+    s2.display();
+
+    // Modifying s2 will not modify s1
+    s2.str[0] = 'h';
+    std::cout << "After modifying s2: " << std::endl;
+    std::cout << "s1: ";
+    s1.display();
+    std::cout << "s2: ";
+    s2.display();
+
+    return 0;
+}
